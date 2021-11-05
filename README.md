@@ -36,5 +36,77 @@ Recuerda, esta venta puede ser consultada sin necesidad de haber iniciado sesió
 
 #### `https://{{host}}/home`
 
+El home mostrará una lista de fotógrafos. Esta operativa se basará en la API de [reqres.in](https://reqres.in/api/users?page=2) y 
+estará reservada a usuarios que hayan iniciado sesión. Aunque la API que nos han proporcionado no lo requiere, por ser un 
+entorno no-productivo, **es requisito** que se envíe el token del usuario en header con nombre `Authorization`.
 
+El modelo de respuesta es:
 
+```json
+{
+    "page": 2,
+    "per_page": 6,
+    "total": 12,
+    "total_pages": 2,
+    "data": [
+        {
+            "id": 7,
+            "email": "michael.lawson@reqres.in",
+            "first_name": "Michael",
+            "last_name": "Lawson",
+            "avatar": "https://reqres.in/img/faces/7-image.jpg"
+        },
+        {
+            "id": 8,
+            "email": "lindsay.ferguson@reqres.in",
+            "first_name": "Lindsay",
+            "last_name": "Ferguson",
+            "avatar": "https://reqres.in/img/faces/8-image.jpg"
+        },
+        {
+            "id": 9,
+            "email": "tobias.funke@reqres.in",
+            "first_name": "Tobias",
+            "last_name": "Funke",
+            "avatar": "https://reqres.in/img/faces/9-image.jpg"
+        },
+        {
+            "id": 10,
+            "email": "byron.fields@reqres.in",
+            "first_name": "Byron",
+            "last_name": "Fields",
+            "avatar": "https://reqres.in/img/faces/10-image.jpg"
+        },
+        {
+            "id": 11,
+            "email": "george.edwards@reqres.in",
+            "first_name": "George",
+            "last_name": "Edwards",
+            "avatar": "https://reqres.in/img/faces/11-image.jpg"
+        },
+        {
+            "id": 12,
+            "email": "rachel.howell@reqres.in",
+            "first_name": "Rachel",
+            "last_name": "Howell",
+            "avatar": "https://reqres.in/img/faces/12-image.jpg"
+        }
+    ],
+    "support": {
+        "url": "https://reqres.in/#support-heading",
+        "text": "To keep ReqRes free, contributions towards server costs are appreciated!"
+    }
+}
+```
+
+#### `https://{{host}}/login`
+
+Permitirá iniciar sesión para, posteriormente, guardar el token en 
+el *[Local Storage](https://developer.mozilla.org/es/docs/Web/API/Window/localStorage)* del navegador. Este token, **será
+incluido en todas las peticiones HTTP** si está presente.
+
+Para obtener el token, haremos, nuevamente uso de la API de [reqres](https://reqres.in/api/login). Sus datos son:
+
+| Entrada        | Salida           | Método  |
+| :------------- |:-------------:| -----:|
+| ```{ "email": "eve.holt@reqres.in","password": "cityslicka"}```| ```{"token": "QpwL5tke4Pnpja7X4" }``` | POST |
