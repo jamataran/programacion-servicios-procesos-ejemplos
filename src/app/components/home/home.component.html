@@ -1,0 +1,78 @@
+<div class="col-md-6 offset-md-3 mt-5">
+  <div class="card" style="padding-bottom: 20px;">
+    <img class="card-img-top"
+         style="max-height: 400px;"
+         src="https://www.totalpeople.co.uk/media/filer_public_thumbnails/filer_public/77/8d/778db427-14b2-43b9-878e-2901e6a1fe20/office-staff-backbone-your-company.jpg__1280x720_q85_crop-smart_subsampling-2_upscale.jpg"
+         alt="Card image cap">
+    <div class="card-body">
+      <h5 class="card-title">Listado de fotógrafos</h5>
+      <div class="d-flex justify-content-around" *ngIf="!uResponse || loading" style="padding: 10px;">
+        <div class="spinner-grow text-primary" role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
+        <div class="spinner-grow text-secondary" role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
+        <div class="spinner-grow text-success" role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
+        <div class="spinner-grow text-danger" role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
+        <div class="spinner-grow text-warning" role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
+        <div class="spinner-grow text-info" role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
+        <div class="spinner-grow text-light" role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
+        <div class="spinner-grow text-dark" role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
+      </div>
+      <ngb-accordion [closeOthers]="true" activeIds="static-1" *ngIf="uResponse">
+        <ngb-panel [title]="response.last_name + ','+this.response.first_name" *ngFor="let response of uResponse.data">
+          <ng-template ngbPanelContent>
+            <div class="row">
+              <div class="col-sm-6">
+                <div class="card">
+                  <div class="card-body">
+                    <h5 class="card-title mx-auto text-center">Foto</h5>
+                    <p class="card-text text-center">
+                      <img [src]="response.avatar" [alt]="response.email">
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <div class="card">
+                  <div class="card-body">
+                    <h5 class="card-title">Datos</h5>
+                    <ul class="card-text">
+                      <li>Apellidos: {{response.last_name}}</li>
+                      <li>Nombre: {{response.first_name}}</li>
+                      <li>Mail: {{response.email}}</li>
+                      <li>Identificador: {{response.id}}</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </ng-template>
+        </ngb-panel>
+      </ngb-accordion>
+      <div class="d-flex justify-content-around" style="padding-top: 20px;">
+        <ngb-pagination
+          [(page)]="page"
+          [collectionSize]="totalPages"
+          (pageChange)="this.updateData();">
+        </ngb-pagination>
+      </div>
+
+
+    </div>
+  </div>
+</div>
+

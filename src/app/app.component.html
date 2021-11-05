@@ -1,0 +1,26 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">Taller Angular</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="['/home']" *ngIf="user">🔒 Listar fotógrafos</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="['/imagenes']">Ver demo</a>
+      </li>
+    </ul>
+    <div class="form-inline my-2 my-lg-0">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit" *ngIf="!user" [routerLink]="'login'">🔒 Login</button>
+      <button class="btn btn-outline-secondary my-2 my-sm-0" type="submit" *ngIf="user" (click)="this.logout();">Salir</button>
+    </div>
+  </div>
+</nav>
+<div class="container-fluid">
+  <router-outlet></router-outlet>
+</div>
+<div class="footer mt-auto py-3 text-center">
+  Esta aplicación funciona gracias a <a href="https://reqres.in">reqres.in</a>. Su código está disponible en <a href="https://github.com/jamataran/programacion-servicios-procesos-ejemplos">GitHub</a>
+</div>
